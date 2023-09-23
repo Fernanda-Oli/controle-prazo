@@ -1,3 +1,4 @@
+import 'package:controle_prazo/app/pages/tab_pages/deadline_to_receive.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,13 +40,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           body: TabBarView(
-            children: widget.labelTab.map((label) {
-              return Center(
-                child: Text(
-                  'Conteúdo da $label',
-                  style: const TextStyle(fontSize: 24.0),
-                ),
-              );
+            children: widget.labelTab.map((String label) {
+              switch (label) {
+                case "Futuros":
+                  return const DeadlineToReceived();
+                case "Recentes":
+                  return Container(color: const Color.fromARGB(255, 0, 212, 11));
+                  default: return Container(color: Colors.red);
+              }
             }).toList(),
           ),
         ),
