@@ -19,6 +19,7 @@ class _DeadlineToReceivedState extends State<DeadlineToReceived> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.indigo[100],
       body: ListView.builder(
         itemCount: selectedList.length,
         itemBuilder: (context, index) {
@@ -28,22 +29,24 @@ class _DeadlineToReceivedState extends State<DeadlineToReceived> {
               elevation: 16,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
-                side: const BorderSide(width : 1, color: Colors.black),
+                side: const BorderSide(width: 1, color: Colors.black),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(1.0),
                 child: ListTile(
                   hoverColor: Colors.indigo[50],
                   shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-
-                ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   onTap: () {
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
-                  title: Text('Nome: ${selectedList[index].nome}'),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    Text('Nome: ${selectedList[index].nome}'),
+                    TextLabel(texto: selectedList[index].data),
+                  ]),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -51,12 +54,15 @@ class _DeadlineToReceivedState extends State<DeadlineToReceived> {
                           width: double.infinity,
                           height: 70,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                            TextLabel(texto: 'Data: ${selectedList[index].data}'),
-                            TextLabel(
-                                texto: 'Total: ${selectedList[index].total}'),
-                          ])),
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                  child: TextLabel(
+                                      texto:
+                                          'Total: ${selectedList[index].total}'),
+                                ),
+                              ])),
                     ],
                   ),
                 ),
