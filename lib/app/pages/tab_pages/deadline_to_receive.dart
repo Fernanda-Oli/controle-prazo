@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../account_details_chat_page.dart';
 import '../model/item.dart';
 import '../widgets/text_label.dart';
 
@@ -39,14 +40,19 @@ class _DeadlineToReceivedState extends State<DeadlineToReceived> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   onTap: () {
-                    setState(() {});
+                    setState(() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AccountDetailChatPagState(nameClient: selectedList[index].nome)));
+                    });
                   },
                   title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    Text('Nome: ${selectedList[index].nome}'),
-                    TextLabel(texto: selectedList[index].data),
-                  ]),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Nome: ${selectedList[index].nome}'),
+                        TextLabel(texto: selectedList[index].data),
+                      ]),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -57,7 +63,8 @@ class _DeadlineToReceivedState extends State<DeadlineToReceived> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
                                   child: TextLabel(
                                       texto:
                                           'Total: ${selectedList[index].total}'),

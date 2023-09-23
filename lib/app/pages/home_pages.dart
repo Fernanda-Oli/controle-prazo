@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             children: widget.labelTab.map((String label) {
               switch (label) {
                 case "Futuros":
-                  return Container(color: const Color.fromARGB(255, 0, 212, 11), child: DeadlineToReceived());
+                  return const DeadlineToReceived();
                 case "Recentes":
                   return Container(color: const Color.fromARGB(255, 0, 212, 11));
                   default: return Container(color: Colors.red);
