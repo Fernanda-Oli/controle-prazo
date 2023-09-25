@@ -12,11 +12,6 @@ class DeadlineToReceived extends StatefulWidget {
 }
 
 class _DeadlineToReceivedState extends State<DeadlineToReceived> {
-  final List<Item> selectedList = [
-    Item("Julia", "01/09/2023", "R\$ 100,00"),
-    Item("Janet", "02/09/2023", "R\$ 75,50"),
-    Item("Juana", "03/09/2023", "R\$ 1,75"),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,34 +37,38 @@ class _DeadlineToReceivedState extends State<DeadlineToReceived> {
                   onTap: () {
                     setState(() {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AccountDetailChatPagState(nameClient: selectedList[index].nome)));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AccountDetailChatPagState(
+                                  nameClient: selectedList[index].nome)));
                     });
                   },
                   title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Nome: ${selectedList[index].nome}'),
+                        Text('Nome: ${selectedList[index].nome}', style: const TextStyle(fontSize: 18),),
                         TextLabel(texto: selectedList[index].data),
                       ]),
                   subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
                           width: double.infinity,
-                          height: 70,
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 16),
-                                  child: TextLabel(
-                                      texto:
-                                          'Total: ${selectedList[index].total}'),
-                                ),
-                              ])),
+
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(
+                                child: TextLabel(
+                                    texto:
+                                        'Bairro: ${selectedList[index].bairro}'),
+                              ),
+                              TextLabel(
+                                  texto:
+                                      'Total: ${selectedList[index].total}'),
+                            ],
+                          )),
+                      TextLabel(texto: 'Endereço  ${selectedList[index].rua}')
                     ],
                   ),
                 ),
